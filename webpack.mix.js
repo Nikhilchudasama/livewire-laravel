@@ -14,4 +14,14 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
+    ])
+    .js('resources/js/backend/app.js', 'public/js/backend.js')
+    .extract([
+        'alpinejs',
+        'popper.js',
+        'axios',
+        'lodash',
+    ])
+    .postCss('resources/css/backend/app.css', 'public/css/backend.css',[
+        require("tailwindcss"),
     ]);
