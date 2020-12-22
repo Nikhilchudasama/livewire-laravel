@@ -7,25 +7,21 @@
                 <div class="flex justify-center items-center">
                     <span class="text-gray-700 font-semibold text-2xl">{{ __('Confirm Password') }}</span>
                 </div>
-                {{ __('Please confirm your password before continuing.') }}
+                <x-alerts type="info">
+                    {{ __('Please confirm your password before continuing.') }}
+                </x-alerts>
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
 
-                        <label class="block">
-                            <span class="text-gray-700 text-sm">{{ __('Password') }}</span>
-                            <input id="password"
-                                   type="password"
-                                   class="form-input mt-1 block w-full rounded-md focus:border-indigo-600 @error('password') is-invalid @enderror"
-                                   name="password"
-                                   required autocomplete="current-password">
-
-                            @error('password')
-                            <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                            {{ $message }}
-                        </span>
-                            @enderror
-                        </label>
+                        <x-forms.form-input
+                            name="password"
+                            type="password"
+                            label="{{ __('Password') }}"
+                            required="true"
+                            autocomplete="current-password"
+                        >
+                        </x-forms.form-input>
 
                         <div class="flex justify-end items-end mt-4">
                             @if (Route::has('password.request'))

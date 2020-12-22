@@ -8,54 +8,45 @@
                     <span class="text-gray-700 font-semibold text-2xl">{{ __('Register') }}</span>
                 </div>
                 <form class="mt-4" action="{{ route('register') }}" method="post">
+                    @csrf
+                    <x-forms.form-input
+                        name="name"
+                        type="text"
+                        label="{{ __('Name') }}"
+                        value="{{ old('name') }}"
+                        required="true"
+                        autocomplete="name"
+                        autofocus>
+                    </x-forms.form-input>
 
-                    <label class="block">
-                        <span class="text-gray-700 text-sm">{{ __('Name') }}</span>
-                        <input type="text"
-                               name="name"
-                               value="{{ old('name') }}"
-                               class="form-input mt-1 block w-full rounded-md focus:border-indigo-600 @error('name') is-invalid @enderror"
-                               required autocomplete="name" autofocus>
-                        @error('name')
-                        <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                        {{ $message }}
-                        </span>
-                        @enderror
-                    </label>
+                    <x-forms.form-input
+                        name="email"
+                        type="email"
+                        label="{{ __('E-Mail Address') }}"
+                        value="{{ old('email') }}"
+                        required="true"
+                        autocomplete="email"
+                        autofocus>
+                    </x-forms.form-input>
 
-                    <label class="block">
-                        <span class="text-gray-700 text-sm">{{ __('E-Mail Address') }}</span>
-                        <input type="email"
-                               name="email"
-                               class="form-input mt-1 block w-full rounded-md focus:border-indigo-600 @error('email') is-invalid @enderror"
-                               required autocomplete="email" autofocus>
-                        @error('email')
-                        <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                        {{ $message }}
-                        </span>
-                        @enderror
-                    </label>
+                    <x-forms.form-input
+                        name="password"
+                        type="password"
+                        label="{{ __('Password') }}"
+                        required="true"
+                        autocomplete="new-password"
+                        autofocus>
+                    </x-forms.form-input>
 
-                    <label class="block mt-3">
-                        <span class="text-gray-700 text-sm">{{ __('Password') }}</span>
-                        <input type="password"
-                               name="password"
-                               class="form-input mt-1 block w-full rounded-md focus:border-indigo-600 @error('password') is-invalid @enderror"
-                               required autocomplete="new-password">
-                        @error('password')
-                        <span class="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
-                        {{ $message }}
-                        </span>
-                        @enderror
-                    </label>
 
-                    <label class="block mt-3">
-                        <span class="text-gray-700 text-sm">{{ __('Confirm Password') }}</span>
-                        <input type="password"
-                               name="password_confirmation"
-                               class="form-input mt-1 block w-full rounded-md focus:border-indigo-600"
-                               required autocomplete="new-password">
-                    </label>
+                    <x-forms.form-input
+                        name="password_confirmation"
+                        type="password"
+                        label="{{ __('Confirm Password') }}"
+                        required="true"
+                        autocomplete="new-password"
+                        autofocus>
+                    </x-forms.form-input>
 
                     <div class="flex justify-end items-center mt-4">
                         @if (Route::has('password.request'))
