@@ -16,6 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
 <div class="bg-gray-200 h-screen">
@@ -124,5 +125,7 @@
 <script src="{{ asset('js/vendor.js') }}"></script>
 
 <script src="{{ asset('js/app.js') }}" defer></script>
+@livewireScripts
+
 </body>
 </html>

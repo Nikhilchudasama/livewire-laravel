@@ -15,6 +15,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
+    @livewireStyles
 
     <!-- Scripts -->
 
@@ -35,5 +36,7 @@
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/backend.js') }}"></script>
+    @livewireScripts
+
 </body>
 </html>
