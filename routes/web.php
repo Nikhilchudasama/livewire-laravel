@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Auth\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/user/dashboard', function (){
     return view('backend.dashboard');
+});
+
+
+/*
+ * Backend Routes
+ * Namespaces indicate folder structure
+ */
+Route::group(['prefix' => 'user', 'as' => 'admin.'], function () {
+
+    Route::group(['prefix' => 'auth','as' => 'auth.',], function () {
+        Route::resource('user', UserController::class);
+    });
 });
