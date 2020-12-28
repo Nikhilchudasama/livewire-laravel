@@ -28,6 +28,9 @@
             @include('backend.includes.header')
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                 <div class="container mx-auto px-6 py-8">
+                    <div class="my-2">
+                        <x-alerts type=""></x-alerts>
+                    </div>
                     @yield('content')
                 </div>
             </main>
@@ -37,6 +40,7 @@
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/backend.js') }}"></script>
     @livewireScripts
+    @stack('after-scripts')
 
 </body>
 </html>
