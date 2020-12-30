@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
         'popper.js',
         'axios',
         'lodash',
+        'sweetalert2'
     ])
     .postCss('resources/css/backend/app.css', 'public/css/backend.css',[
         require("tailwindcss"),
