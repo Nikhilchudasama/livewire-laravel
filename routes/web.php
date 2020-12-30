@@ -20,11 +20,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified')->middleware(['password.confirm']);;
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
-Route::get('/user/dashboard', function (){
-    return view('backend.dashboard');
-});
+
 
 
 /*
@@ -32,6 +30,10 @@ Route::get('/user/dashboard', function (){
  * Namespaces indicate folder structure
  */
 Route::group(['prefix' => 'user', 'as' => 'admin.'], function () {
+
+    Route::get('dashboard', function (){
+        return view('backend.dashboard');
+    })->name('dashboard');
 
     Route::group(['prefix' => 'auth','as' => 'auth.',], function () {
         Route::resource('user', UserController::class);
