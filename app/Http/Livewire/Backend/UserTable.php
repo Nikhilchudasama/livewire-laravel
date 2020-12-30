@@ -14,10 +14,11 @@ class UserTable extends Component
 
     public $perPage = 10;
     public $search = '';
-    public $orderBy = 'id';
-    public $orderAsc = true;
+    public $sort_attribute = 'id';
+    public $sort_direction = 'desc';
     public $selectedIds = [];
     public $uid = '';
+    public $name = '';
 
     protected $listeners = [
         'deleteUsersEvent' => 'deleteUsersEvent',
@@ -53,7 +54,20 @@ class UserTable extends Component
     public function getQuery()
     {
         return User::query()
-            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
+            ->where('email','LIKE', '%'.$this->search.'%')
+            ->orWhere('name', 'LIKE', '%'.$this->search.'%')
+            ->orderBy($this->sort_attribute, $this->sort_direction);
+    }
+
+    public function sort($column){
+        if ($this->sort_attribute != $column) {
+            $this->sort_direction = 'asc';
+        }
+        else {
+            $this->sort_direction = $this->sort_direction == 'asc' ? 'desc' : 'asc';
+        }
+
+        $this->sort_attribute = $column;
     }
 
     public function render()

@@ -6,24 +6,24 @@
                    placeholder="Search users...">
         </div>
 
-        <div class="w-1/6 relative mx-1">
-            <select wire:model="orderBy"
-                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none form-input"
-                    id="grid-state">
-                <option value="id">ID</option>
-                <option value="name">Name</option>
-                <option value="email">Email</option>
-                <option value="created_at">Sign Up Date</option>
-            </select>
-        </div>
-        <div class="w-1/6 relative mx-1">
-            <select wire:model="orderAsc"
-                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none form-input"
-                    id="grid-state">
-                <option value="1">Ascending</option>
-                <option value="0">Descending</option>
-            </select>
-        </div>
+{{--        <div class="w-1/6 relative mx-1">--}}
+{{--            <select wire:model="orderBy"--}}
+{{--                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none form-input"--}}
+{{--                    id="grid-state">--}}
+{{--                <option value="id">ID</option>--}}
+{{--                <option value="name">Name</option>--}}
+{{--                <option value="email">Email</option>--}}
+{{--                <option value="created_at">Sign Up Date</option>--}}
+{{--            </select>--}}
+{{--        </div>--}}
+{{--        <div class="w-1/6 relative mx-1">--}}
+{{--            <select wire:model="orderAsc"--}}
+{{--                    class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none form-input"--}}
+{{--                    id="grid-state">--}}
+{{--                <option value="1">Ascending</option>--}}
+{{--                <option value="0">Descending</option>--}}
+{{--            </select>--}}
+{{--        </div>--}}
         <div class="w-1/6 relative mx-1">
             <select wire:model="perPage"
                     class="block appearance-none w-full border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none form-input"
@@ -44,23 +44,17 @@
     <div>
         <table class="min-w-full">
             <thead>
-                <tr>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                    </th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Name
-                    </th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Title
-                    </th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Status
-                    </th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Role
-                    </th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                </tr>
+            <tr>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                </th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500  tracking-wider">
+                    @include('components.backend.datatable.action.sort-column',['label' => trans('Name'), 'column' => 'name', 'sorting' => true])
+                </th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500  tracking-wider">
+                    @include('components.backend.datatable.action.sort-column',['label' => trans('Joined'), 'column' => 'created_at', 'sorting' => true])
+                </th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+            </tr>
             </thead>
 
             <tbody class="bg-white">
@@ -71,7 +65,7 @@
                                value="{{ $user->id }}"
                                type="checkbox"
                                value="{{ $user->id }}"
-                               >
+                        >
                     </td>
                     <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div class="flex items-center">
@@ -88,18 +82,8 @@
                         </div>
                     </td>
 
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                        <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                        Owner
+                    <td class="px-6 py-4 whitespace-no-wrap text-left border-b border-gray-200 text-sm leading-5 font-medium">
+                        {{ $user->created_at->format('Y-m-d') }}
                     </td>
 
                     <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
@@ -113,6 +97,7 @@
                             </x-backend.datatable.action.delete>
                         </div>
                     </td>
+
                 </tr>
             @endforeach
             </tbody>
