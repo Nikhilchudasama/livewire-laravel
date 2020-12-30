@@ -36,11 +36,13 @@
             </main>
         </div>
     </div>
+    @livewireScripts
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/backend.js') }}"></script>
-    @livewireScripts
+
     @stack('after-scripts')
+    <x-sweetalert></x-sweetalert>
 
 </body>
 </html>
