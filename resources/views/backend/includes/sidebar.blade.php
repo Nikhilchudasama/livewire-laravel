@@ -19,87 +19,98 @@
     </div>
 
     <nav class="mt-10">
-        <a class="flex items-center py-3 px-6 bg-gray-700 bg-opacity-25 text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200"
-           href="/">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
-            </svg>
 
-            <span class="mx-3">Dashboard</span>
-        </a>
+        <x-backend.sidebar :url="'user/dashboard'">
+            <x-slot name="icon">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/>
+                </svg>
+            </x-slot>
+            <x-slot name="name">
+                Dashboard
+            </x-slot>
+        </x-backend.sidebar>
 
-        <a class="flex items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200"
-           href="/ui-elements">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/>
-            </svg>
+        <x-backend.sidebar :dropdown="true" :url="'user/auth*'">
+            <x-slot name="icon">
+                <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
 
-            <span class="mx-3">UI Elements</span>
-        </a>
+            </x-slot>
+            <x-slot name="name">
+                Access
+            </x-slot>
+            <x-slot name="submenu">
+                <a href="{{ route('admin.auth.user.index') }}" class="py-3 px-6 block text-sm {{ active_class(Active::checkUriPattern('user/auth/user'), 'bg-blue-500 text-white', 'text-gray-400 hover:bg-blue-500 hover:text-white') }}">User Management</a>
+                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">Role Management</a>
+            </x-slot>
+        </x-backend.sidebar>
 
-        <a class="flex items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200"
-           href="/tables">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
-            </svg>
+{{--        SAMPLE SIDEBAR MENU CODE --}}
 
-            <span class="mx-3">Tables</span>
-        </a>
+{{--        <a class="flex items-center py-3 px-6 transform transition-transform ease-in duration-200 bg-gray-700 bg-opacity-75 text-gray-100 transform hover:translate-x-2"--}}
+{{--           href="/ui-elements">--}}
+{{--            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+{{--                 stroke="currentColor">--}}
+{{--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--                      d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/>--}}
+{{--            </svg>--}}
 
-        <a class="flex items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200"
-           href="/forms">
-            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-            </svg>
+{{--            <span class="mx-3">UI Elements</span>--}}
+{{--        </a>--}}
 
-            <span class="mx-3">Forms</span>
-        </a>
+{{--        <a class="flex items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200"--}}
+{{--           href="/tables">--}}
+{{--            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"--}}
+{{--                 stroke="currentColor">--}}
+{{--                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"--}}
+{{--                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>--}}
+{{--            </svg>--}}
 
-        <div x-data="{ open: false }">
-            <a @click="open = !open"
-               class="flex justify-between items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200">
-                <span class="flex items-center">
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round"></path>
-                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-                              stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </svg>
+{{--            <span class="mx-3">Tables</span>--}}
+{{--        </a>--}}
 
-                    <span class="mx-4 font-medium">Accounts</span>
-                </span>
 
-                <span>
-                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"
-                              stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>
-                        <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"
-                              stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </span>
-            </a>
+{{--        <div x-data="{ open: false }">--}}
+{{--            <a @click="open = !open"--}}
+{{--               class="flex justify-between items-center py-3 px-6 text-gray-400 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 transform hover:translate-x-2 transition-transform ease-in duration-200">--}}
+{{--                <span class="flex items-center">--}}
+{{--                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                        <path--}}
+{{--                            d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"--}}
+{{--                            stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
+{{--                            stroke-linejoin="round"></path>--}}
+{{--                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"--}}
+{{--                              stroke="currentColor" stroke-width="2" stroke-linecap="round"--}}
+{{--                              stroke-linejoin="round"></path>--}}
+{{--                    </svg>--}}
 
-            <div x-show="open" class="bg-gray-800">
-                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">All
-                    Accounts</a>
-                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">Create
-                    Account</a>
-                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">Accounts
-                    Roles</a>
-            </div>
-        </div>
+{{--                    <span class="mx-4 font-medium">Accounts</span>--}}
+{{--                </span>--}}
+
+{{--                <span>--}}
+{{--                    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
+{{--                        <path x-show="! open" d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2"--}}
+{{--                              stroke-linecap="round" stroke-linejoin="round" style="display: none;"></path>--}}
+{{--                        <path x-show="open" d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2"--}}
+{{--                              stroke-linecap="round" stroke-linejoin="round"></path>--}}
+{{--                    </svg>--}}
+{{--                </span>--}}
+{{--            </a>--}}
+
+{{--            <div x-show="open" class="bg-gray-800">--}}
+{{--                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">All--}}
+{{--                    Accounts</a>--}}
+{{--                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">Create--}}
+{{--                    Account</a>--}}
+{{--                <a class="py-3 px-6 block text-sm text-gray-400 hover:bg-blue-500 hover:text-white" href="#">Accounts--}}
+{{--                    Roles</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </nav>
 </div>
