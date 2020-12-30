@@ -36,7 +36,7 @@
         </div>
         <div class="w-1/6 relative mx-1">
             <button wire:click="deleteUsers"
-                    class="block appearance-none w-full bg-red-500 border border-gray-200 text-white py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    class="block appearance-none w-full bg-red-500 border border-gray-200 text-white py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-red-500 focus:border-gray-200">
                 Delete
             </button>
         </div>
@@ -107,8 +107,10 @@
                         <div class="flex">
                             <x-backend.datatable.action.edit class="text-indigo-600 hover:text-indigo-900"
                                                              route="{{ route('admin.auth.user.edit',['user' => $user]) }}"></x-backend.datatable.action.edit>
-                            <x-backend.datatable.action.delete class="text-red-600 hover:text-red-900"
-                                                               route="{{ route('admin.auth.user.destroy',['user' => $user]) }}"></x-backend.datatable.action.delete>
+                            <x-backend.datatable.action.delete
+                                class="text-red-600 hover:text-red-900"
+                                wire:click="delete({{$user->id}})">
+                            </x-backend.datatable.action.delete>
                         </div>
                     </td>
                 </tr>
